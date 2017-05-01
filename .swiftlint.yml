@@ -1,0 +1,56 @@
+disabled_rules: # rule identifiers to exclude from running
+#- colon
+- conditional_binding_cascade
+- comma
+- control_statement
+- force_cast
+- legacy_constant
+- legacy_constructor
+- line_length
+- nesting
+- todo
+- trailing_whitespace
+- type_name
+- variable_name
+- cyclomatic_complexity
+- unused_closure_parameter
+- redundant_string_enum_value
+- operator_whitespace
+- for_where
+- notification_center_detachment
+
+opt_in_rules: # some rules are only opt-in
+#- empty_count
+#- missing_docs
+# Find all the available rules by running:
+# swiftlint rules
+
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+- Carthage
+- Pods
+- <YOURPROJECT>/Vendor
+- <YOURPROJECT>Tests
+- <YOURPROJECT>UITests
+
+# These properties are marked as error by default.
+force_try: warning
+
+file_length:
+warning: 2000
+error: 3000
+
+function_body_length:
+warning: 150
+error: 200
+
+type_body_length:
+warning: 2000
+error: 3000
+
+function_parameter_count:
+warning: 10
+error: 15
+
+large_tuple:
+warning: 4
+error: 5
