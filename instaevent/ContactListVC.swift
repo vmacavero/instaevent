@@ -9,11 +9,8 @@
 import UIKit
 import Contacts
 import Firebase
-import FirebaseCore
-import FirebaseInstanceID
 import EventKit
 import OneSignal
-import EVReflection
 
 class ContactListVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating {
    var eventId: String = ""
@@ -109,7 +106,7 @@ class ContactListVC: UIViewController, UITableViewDataSource, UITableViewDelegat
             break
          } else {
          //phone not found
-         //MARK: Todo : alert
+         //todo: alert
          }
          
       }
@@ -176,52 +173,7 @@ class ContactListVC: UIViewController, UITableViewDataSource, UITableViewDelegat
             }
          }
       }
-     /* print (String(contactsWithPhoneNumber.count))
-      for contact in contactsWithPhoneNumber {
-         /*for num  in contact.phoneNumbers {
-            print(num.value.stringValue)
-         
-//            print(num.value.value(forKey: "countryCode"))
-        */
-         }*/
-         //print("phonenumbers : = \(contact.phoneNumbers)")
-         //   print(contact.phoneNumbers[0].value.stringValue)
-      //   print("givenname" + contact.givenName)
-      //   print("famili name" + contact.familyName)
-        // print(UIImage(data: contact.imageData!))         
-      }
-  // }
- /*  func getContactsold() {
-    //gotta retrieve all contacts
-      print("getting contacts")
-      var contacts = [CNContact]()
-      
-      let requestForContacts = CNContactFetchRequest(keysToFetch: [CNContactIdentifierKey as CNKeyDescriptor,
-    CNContactFormatter.descriptorForRequiredKeys(for: CNContactFormatterStyle.fullName),
-    CNContactPhoneNumbersKey as CNKeyDescriptor,
-    CNContactImageDataKey as CNKeyDescriptor,
-    CNContactEmailAddressesKey as CNKeyDescriptor,
-    CNContactBirthdayKey as CNKeyDescriptor])
-      do {
-         try contactStore.enumerateContacts(with: requestForContacts) { contact, _ in
-            print("contact:\(contact)")
-            contacts.append(contact)
-         }
-      } catch {
-         print(error)
-      }
-      
-      for contact in contacts {
-         print(contact)
-         let firstName = contact.givenName
-                  print("first:\(firstName)")
-         let phoneNumber = (contact.phoneNumbers[0].value).value(forKey: "digits")
-         print(phoneNumber as! String)
-         let emailAddress = contact.emailAddresses[0].value(forKey: "value")
-         print(emailAddress as! String)
-      }
-   }  GETCONTACTS OLD */
-   
+   }
    func requestAccessToContacts() {
       contactStore.requestAccess(for: CNEntityType.contacts,
                                  completionHandler: {(accessGranted: Bool, error: Error?) in
@@ -277,29 +229,21 @@ class ContactListVC: UIViewController, UITableViewDataSource, UITableViewDelegat
       
    }
    func sendPush(event: EKEvent, token: String) {
-      //send one to one push notif
-      print("son in sendpush")
       var tok: Array = [String]()
       tok.append(token)
-      
-     // let formatter = DateFormatter()
-     // formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
       let formatter = DateFormatter()
       formatter.dateFormat = "YYYY-MM-dd HH:mm:ss Z"
       var alarmDate: [String] = []
      
-    //THIS IS REALLY UGLY ! I KNOW ! PLEASE FIX ME !
       if let al = event.alarms {
          for alarm in al {
-            print("ciclo for: = \(alarm)")
-            print ("relative offset = \(alarm.relativeOffset)")
             alarmDate.append(String(describing: alarm.relativeOffset))
          }
       } else { //Case of no alarms
       alarmDate.append("no")
       alarmDate.append("no")
       }
-         print("alrmdate = \(alarmDate) e ce ne sono \(alarmDate.count)")
+      //if we had just 1 alarm....
       if alarmDate.count == 1 {
          alarmDate.append("no") //second element of alarmDate array
       }
@@ -326,14 +270,12 @@ class ContactListVC: UIViewController, UITableViewDataSource, UITableViewDelegat
                                     self.present(alert, animated: true, completion: nil)
       }) { (error) in
          print("failure = \(error!)")
-         let alert = UIAlertController(title: "fatto",
+         let alert = UIAlertController(title: "There Was an error :",
                                        message: "err = \(error!) ",
             preferredStyle: UIAlertControllerStyle.alert)
-         let act1 = UIAlertAction(title: "vammale", style: UIAlertActionStyle.cancel, handler: nil)
+         let act1 = UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: nil)
          alert.addAction(act1)
          self.present(alert, animated: true, completion: nil)
       }
-      
    }//end of sendPush
 }
-

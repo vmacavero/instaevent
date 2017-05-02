@@ -13,6 +13,7 @@ import UserNotifications
 import OneSignal
 import EventKit
 import EventKitUI
+import Sparrow
 
 class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
 
@@ -39,7 +40,8 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
       
       //changing font of uisegmentedcontrol
       changeFont()
-   
+      
+      //picker init
       firstPickerView.delegate = self
       firstPickerView.dataSource = self
       secondPickerView.delegate = self
@@ -76,6 +78,11 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
       //prepare for user permissions, they're a lot !
       // TO DO : Implemente RequestPermission on github!
       print("main viewdidappear")
+      super.viewDidAppear(animated)
+      if !SPRequestPermission.isAllowPermissions([.calendar,.contacts,.notification]) {
+      SPRequestPermission.dialog.interactive.present(on: self,
+                                                     with: [SPRequestPermissionType.notification, SPRequestPermissionType.calendar, SPRequestPermissionType.contacts], dataSource: DataSource())
+      }
    }
    
    // MARK: Animatebutton function
@@ -158,5 +165,4 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
       eventDescription.resignFirstResponder()
    
    }
-   
 }

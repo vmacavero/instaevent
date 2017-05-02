@@ -12,7 +12,6 @@ import FirebaseInstanceID
 import UserNotifications
 import OneSignal
 import EventKit
-import EVReflection
 
 //import UserNotificationsUIsendp
 
@@ -36,7 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                //print("additional data :")
                //print(notification!.payload.additionalData)
                
-                              
         }, handleNotificationAction: { (result) in
          print("2")
             let payload: OSNotificationPayload? = result?.notification.payload
@@ -58,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          print("5")
          CalendarUtil.manageReceivedHashableEvent(eventDict: eventDict)
             print("il full message e': \(String(describing: fullMessage))")
-        }, settings: [kOSSettingsKeyAutoPrompt: true])
+        }, settings: [kOSSettingsKeyAutoPrompt: false])
       
         // Sync hashed email if you have a login system or collect it.
         //   Will be used to reach the user at the most optimal time of day.

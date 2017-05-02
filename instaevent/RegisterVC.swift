@@ -38,43 +38,20 @@ class RegisterVC: UINavigationController,PhoneNumberViewControllerDelegate {
     }
    
    func presentPhoneNumber() {
-      print("present")
       let phoneNumberViewController = PhoneNumberViewController.standardController()
       phoneNumberViewController.delegate = self
       
     navigationController?.pushViewController(phoneNumberViewController, animated: true)
-     // self.present(phoneNumberViewController, animated: true) {
-         print("presentes!")
-      //}
-      
    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+   
    func phoneNumberViewControllerDidCancel(_ phoneNumberViewController: PhoneNumberViewController) {
-      print("cancelled")
       dismiss(animated: true, completion: nil)
    }
    
    func phoneNumberViewController(_ phoneNumberViewController: PhoneNumberViewController, didEnterPhoneNumber phoneNumber: String, email: String, password: String) {
-      print("numbers:")
-      print(phoneNumber)
-      print(email)
-      print(password)
+      
       // MARK: Registration Starts here !
       //
-      
-      print("ho inserito correttamente i dati e premuto DONE")
-      print("sono in phonenumber.viewcontroller di RegisterVC")
-      print("proviamo con un alert")
-      
       registerUser(phoneNumber: phoneNumber, email: email, password: password)
    }
    
@@ -98,7 +75,7 @@ class RegisterVC: UINavigationController,PhoneNumberViewControllerDelegate {
                self.showAlert(message: "error, email address is already in use by another account !")
                
             default:
-               self.showAlert(message: "can't complete registration, please check and retry")
+               self.showAlert(message: "can't complete registration, please check  and retry")
             }
          }
       })
@@ -122,37 +99,20 @@ class RegisterVC: UINavigationController,PhoneNumberViewControllerDelegate {
 
    func showAlert(message: String) {
       
-      let alert = UIAlertController(title: "fatto", message: message, preferredStyle: UIAlertControllerStyle.alert)
-      let act1 = UIAlertAction(title: "Okidoki", style: UIAlertActionStyle.default, handler: nil)
+      let alert = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertControllerStyle.alert)
+      let act1 = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil)
       alert.addAction(act1)
-     
    }
    
    func getOneSignalToken() {
-      
       // MARK: Getting NEW onesignal token
-      print("sono in mainVC, onesignalinit")
-      print("retrivo il tutto")
-      //OLD STUFF, thanks onesignal !
-   
-      /*  OneSignal.idsAvailable({(_ userId, _ pushToken) in
-         print("UserId:\(userId!)") //unwrapped userId
-         if pushToken != nil {
-            print("pushToken:\(pushToken!)") //unwrapped pushToken
-         }
-      })*/
-      
       guard let token =  OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId
          else {
          //error on status
          print("error getting token")
-       //  showAlert(message: "error initializing OneSignal")
+         showAlert(message: "error initializing OneSignal, please check your internet connection")
          return
       }
-      print("had token : \(token)")
-      //save it :)
       UserDefaults.standard.setValue(token, forKey: "oneSignalToken")
-      
    }
-   
 }

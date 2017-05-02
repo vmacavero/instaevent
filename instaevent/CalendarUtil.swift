@@ -51,22 +51,17 @@ class CalendarUtil: UIViewController {
       var alarm2: Int
    }
   
-   //helps to print a date, otherwise the print in console will ALWAYS USE UTC:00:00
+// MARK: helps to print a date, otherwise the print in console will ALWAYS USE UTC:00:00
    static func printDate(date: Date) {
       let dateFormatter = DateFormatter()
       dateFormatter.dateFormat = "YYYY-MM-dd HH:mm"
       let dateString = dateFormatter.string(from: date)
       print(dateString)
-      
    }
    
    static func insertEvent(event: MyEvent) {
-
-      print("sono in insert event util")
-      print(event)
       //for first, check for calendar authorizations !
       checkCalendarAuthorizationStatus(event: event)
-      
    }
    
    static func checkCalendarAuthorizationStatus(event: MyEvent) {
@@ -77,18 +72,18 @@ class CalendarUtil: UIViewController {
       switch (status) {
       case EKAuthorizationStatus.notDetermined:
          // This happens on first-run
-         print("not detemrin, first run, request access")
+         print("not determined, first run, request access")
          requestAccessToCalendar(event: event)
       case EKAuthorizationStatus.authorized:
          // Things are in line with being able to show the calendars in the table view
          // loadCalendars()
-         print("Autorizzao")
+         print("Authorized, good !")
          insertEventInCalendar(eventStore: globalStore, event: event)
       // refreshTableView()
       case EKAuthorizationStatus.restricted, EKAuthorizationStatus.denied:
          // We need to help them give us permission
          // needPermissionView.fadeIn()
-         print("negao")
+         CalendarUtil.doShow(controllerTitle: "Please give authorization", controllerMessage: "You can do it in settings for InstaEvent Share app", actionTitle: "Ok, i'll think about it")
       }
    }
    // MARK: RequestAccessToCalendar
@@ -105,7 +100,7 @@ class CalendarUtil: UIViewController {
             })
          } else {
             DispatchQueue.main.async(execute: {
-               // self.needPermissionView.fadeIn()
+               CalendarUtil.doShow(controllerTitle: "Please give authorization", controllerMessage: "You can do it in settings for InstaEvent Share app", actionTitle: "Ok, i'll think about it")
             })
          }
       })
@@ -139,21 +134,14 @@ static func insertEventInCalendar(eventStore: EKEventStore, event: MyEvent) {
       //inserting alarms (0 or 1 or 2 alarms)
    addAlarms(event: myEvent, alarm: event.alarm1)
    addAlarms(event: myEvent, alarm: event.alarm2)
-             print("evento con la nuova funzione")
-   print(myEvent)
-
-              do {
+      do {
                   print (myEvent)
                   try globalStore.save(myEvent, span: .thisEvent)
                   print("evento inserito")
-               /*let alertController = UIAlertController(title: "Info", message: "Event Inserted", preferredStyle: .alert)
-               let okButton = UIAlertAction(title: "Good!", style: UIAlertActionStyle.default, handler: nil)
-               alertController.addAction(okButton)
-               alertController.show()*/
                self.doShow(controllerTitle: "info", controllerMessage: "Event Inserted", actionTitle: "Good")
                
                } catch let e as NSError {
-                  print("errr inserting event = \(e)")
+                  CalendarUtil.doShow(controllerTitle: "Error Inserting Event", controllerMessage: "Report this error : \(e)", actionTitle: "Ok")
                   return
                }
    }
@@ -190,16 +178,6 @@ static func insertEventInCalendar(eventStore: EKEventStore, event: MyEvent) {
    }
    
    static func manageReceivedHashableEvent(eventDict: [AnyHashable:Any]) {
-      print("static func manageReceviedHashableEvent, elenco i dati ricevuti : ")
-      let ekStore = EKEventStore()
-      
-      print(String(describing: eventDict[AnyHashable("title")]!))
-      print(String(describing: eventDict[AnyHashable("start")]!))
-      print(String(describing: eventDict[AnyHashable("end")]!))
-      print(String(describing: eventDict[AnyHashable("recur")]!))
-      print(String(describing: eventDict[AnyHashable("allDay")]!))
-      print(String(describing: eventDict[AnyHashable("alarm1")]!))
-      print(String(describing: eventDict[AnyHashable("alarm2")]!))
       
       if let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventEditVC") as? EventEditVC {
          if let window = UIApplication.shared.windows.first, let rootViewController = window.rootViewController {
@@ -212,11 +190,5 @@ static func insertEventInCalendar(eventStore: EKEventStore, event: MyEvent) {
             currentController.present(controller, animated: true, completion: nil)
          }
       }
-      
-   }
-   static func insertSharedEventInCalendar(eventStore: EKEventStore, event: MyEvent) {
-      
-      
-      
    }
 }

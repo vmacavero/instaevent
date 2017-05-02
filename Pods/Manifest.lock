@@ -47,7 +47,10 @@ PODS:
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.9)
   - OneSignal (2.5.2)
-  - Protobuf (3.2.1)
+  - Protobuf (3.3.0)
+  - Sparrow/Core (1.0.0)
+  - Sparrow/Modules/RequestPermission (1.0.0):
+    - Sparrow/Core
 
 DEPENDENCIES:
   - EVReflection
@@ -56,6 +59,16 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Messaging
   - OneSignal
+  - Sparrow/Modules/RequestPermission (from `https://github.com/IvanVorobei/Sparrow.git`)
+
+EXTERNAL SOURCES:
+  Sparrow:
+    :git: https://github.com/IvanVorobei/Sparrow.git
+
+CHECKOUT OPTIONS:
+  Sparrow:
+    :commit: 4a443d26fdb43bf834908afd93d2cd3e38ceb60a
+    :git: https://github.com/IvanVorobei/Sparrow.git
 
 SPEC CHECKSUMS:
   EVReflection: f656ab71b7ed34c0922c6c4836bb77e9b33ca66c
@@ -69,8 +82,9 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 5c046c76a1f859bc9c187e918f18e4fc7bb57b5e
   OneSignal: 66d08b6b1e3c3858cbf28207ed20f1fa865ab2a2
-  Protobuf: 2ccbaf193f6c65adc67745453ca0c13234c32796
+  Protobuf: d582fecf68201eac3d79ed61369ef45734394b9c
+  Sparrow: 30b0e315a27798d7a56757250499449ac6b663c3
 
-PODFILE CHECKSUM: 95abcac1bd6c390520224260c959e92ff3b0cff1
+PODFILE CHECKSUM: aecc33a040fc96f5858724381f31820f95b47741
 
 COCOAPODS: 1.2.0

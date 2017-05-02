@@ -10,8 +10,9 @@ import UIKit
 import Firebase
 import OneSignal
 import EventKit
+import Sparrow
 
-class EventListVC: UIViewController, UISearchResultsUpdating {
+class EventListVC: UIViewController, UISearchResultsUpdating, SPRequestPermissionEventsDelegate {
 // MARK: - Private outlets -
     @IBOutlet weak fileprivate var tableView: UITableView!
     @IBOutlet weak fileprivate var msgTextField: UITextField!
@@ -169,15 +170,20 @@ class EventListVC: UIViewController, UISearchResultsUpdating {
         case .authorized:
             // Things are in line with being able to show the calendars in the table view
             // loadCalendars()
-            print("Autorizzao")
+            print("Calendar Authorized")
 
             self.getEventsInCalendar()
         // refreshTableView()
         case .restricted, .denied:
             // We need to help them give us permission
             // needPermissionView.fadeIn()
-            print("negao")
-        }
+            print("rejected calendar permission reading events")
+            SPRequestPermission.dialog.interactive.present(
+               on: self,
+               with: [.calendar],
+               delegate: self
+         )
+      }
     }
     // MARK: RequestAccessToCalendar
     func requestAccessToCalendar() {
@@ -192,7 +198,13 @@ class EventListVC: UIViewController, UISearchResultsUpdating {
                 })
             } else {
                 DispatchQueue.main.async(execute: {
-                    // self.needPermissionView.fadeIn()
+                  print("rejected calendar permission reading events after simple asking")
+                  SPRequestPermission.dialog.interactive.present(
+                     on: self,
+                     with: [.calendar],
+                     delegate: self
+                  )
+
                 })
             }
         })
@@ -321,4 +333,30 @@ extension EventListVC: UITableViewDelegate, UITableViewDataSource {
       self.tableView.reloadData()
    }
 
+   func didHide() {
+       print("dismiss")
+     // self.dismiss(animated: true, completion: nil)
+   self.performSegue(withIdentifier: "eventListToMainVC", sender: nil)
+     
+   }
+   
+   func didAllowPermission(permission: SPRequestPermissionType) {
+   print("allow")
+      
+   }
+   
+   func didDeniedPermission(permission: SPRequestPermissionType) {
+      print("denied permmission sprequest")
+      DispatchQueue.main.async(execute: {
+         //self.dismiss(animated: true, completion: nil)
+         self.performSegue(withIdentifier: "eventListToMainVC", sender: nil)
+      })
+      
+   }
+   
+   func didSelectedPermission(permission: SPRequestPermissionType) {
+      
+      //self.dismiss(animated: true, completion: nil)
+   }
+   
 }

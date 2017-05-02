@@ -9,7 +9,7 @@
 import UIKit
 
    @IBDesignable class RoundedButton: UIButton {
-      @IBInspectable var rounded: Bool = false {
+      @IBInspectable var roundedBut: Bool = false {
          willSet {
             if newValue {
                self.layer.cornerRadius = self.frame.size.height / 2

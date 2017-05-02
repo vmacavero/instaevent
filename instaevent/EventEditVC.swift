@@ -13,7 +13,6 @@ var sharedStore = EKEventStore()
 
 class EventEditVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
    
-   
    @IBOutlet weak var startDateLbl: UILabel!
    @IBOutlet weak var endDateLbl: UILabel!
    @IBOutlet weak var descriptionLbl: UILabel!
@@ -25,7 +24,7 @@ class EventEditVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
    @IBOutlet weak var recurrenceLbl: UILabel!
    
    let pickerData = ["never", "every day", "every week", "every 2 weeks", "every month", "every year" ]
-   var eventDict = [AnyHashable:Any]()
+   var eventDict = [AnyHashable: Any]()
   
    var sharedEvent = EKEvent(eventStore: sharedStore)
    
@@ -110,7 +109,6 @@ class EventEditVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSourc
       pickerLabel.attributedText = myTitle
       return pickerLabel
    }
-
 
    @IBAction func btnPressed(_ sender: Any) {
       dismiss(animated: true, completion: nil)
