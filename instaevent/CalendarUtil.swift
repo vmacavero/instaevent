@@ -20,6 +20,14 @@ extension UIAlertController {
       present(animated: true, completion: nil)
    }
    
+   func showAlert(message: String) {
+      
+      let alert = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertControllerStyle.alert)
+      let act1 = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil)
+      alert.addAction(act1)
+      self.present(animated: true, completion: nil)
+   }
+   
    func present(animated: Bool, completion: (() -> Void)?) {
       if let rootVC = UIApplication.shared.keyWindow?.rootViewController {
          presentFromController(controller: rootVC, animated: animated, completion: completion)

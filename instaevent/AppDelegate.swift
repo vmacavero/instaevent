@@ -12,6 +12,7 @@ import FirebaseInstanceID
 import UserNotifications
 import OneSignal
 import EventKit
+import Sparrow
 
 //import UserNotificationsUIsendp
 
@@ -28,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
       // MARK: - OneSignal Init -
 //old ..86d32fc5-ea98-483d-bd13-93d55613de6c
+      
         OneSignal.initWithLaunchOptions(launchOptions, appId: "c3403e3e-fdfa-4b33-8bf9-1a97c489b66a",
             handleNotificationReceived: { (notification) in
                print("1")
@@ -82,6 +84,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          print("errr inserting event = \(e)")
          return
       }
-   
    }
+
 }

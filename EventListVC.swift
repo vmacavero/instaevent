@@ -58,45 +58,6 @@ class EventListVC: UIViewController, UISearchResultsUpdating, SPRequestPermissio
         dismiss(animated: true, completion: nil)
     }
 
-    /* @IBAction func sendBtnPressed(_ sender: Any) {
-     
-     //send one to one push notif
-     //vic : 1d0ee42d-47cc-497f-835b-db91f7a07794
-     //fra df849810-9951-4791-a18f-6875b263911a
-     OneSignal.postNotification(["contents": ["en": "\(msgTextField.text)"],
-    "include_player_ids": ["5bfe86e9-2622-4d08-8c8c-8ffccaf9ed7f"]],
-    onSuccess: { (success) in
-     print("success = \(success!)")
-     let alert = UIAlertController(title: "fatto",
-    message: "msg inviato success = \(success!)",
-    preferredStyle: UIAlertControllerStyle.alert)
-     let act1 = UIAlertAction(title: "vabbene", style: UIAlertActionStyle.default, handler: nil)
-     alert.addAction(act1)
-     self.present(alert, animated: true, completion: nil)
-     }) { (error) in
-     print("failure = \(error!)")
-     let alert = UIAlertController(title: "fatto",
-    message: "err = \(error!) ",
-    preferredStyle: UIAlertControllerStyle.alert)
-     let act1 = UIAlertAction(title: "vammale", style: UIAlertActionStyle.cancel, handler: nil)
-     alert.addAction(act1)
-     self.present(alert, animated: true, completion: nil)
-     }
-     
-     }*/
-    //vic
-    //OneSignal.postNotification(["contents": ["en": "\(msgTextField.text)"],
-   //"include_player_ids": ["1d0ee42d-47cc-497f-835b-db91f7a07794"]])
-
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
 
     // MARK: - Private methods -
 

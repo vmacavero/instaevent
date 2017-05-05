@@ -79,10 +79,38 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
       // TO DO : Implemente RequestPermission on github!
       print("main viewdidappear")
       super.viewDidAppear(animated)
-      if !SPRequestPermission.isAllowPermissions([.calendar,.contacts,.notification]) {
-      SPRequestPermission.dialog.interactive.present(on: self,
-                                                     with: [SPRequestPermissionType.notification, SPRequestPermissionType.calendar, SPRequestPermissionType.contacts], dataSource: DataSource())
+     let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+      if launchedBefore  {
+         if !SPRequestPermission.isAllowPermissions([.calendar]) {
+            SPRequestPermission.dialog
+               .interactive
+               .present(on: self, with: [.notification,
+                                         .calendar,
+                                         .contacts],
+                        dataSource: DataSource())
+         }
+         
+      } else {
+         print("First launch, setting UserDefault.")
+         UserDefaults.standard.set(true, forKey: "launchedBefore")
+         SPRequestPermission
+            .dialog
+            .interactive
+            .present(on: self, with: [.notification,
+                                      .calendar,
+                                      .contacts],
+                     dataSource: DataSource())
       }
+      
+      if !SPRequestPermission.isAllowPermissions([.calendar]) {
+      SPRequestPermission.dialog
+         .interactive
+         .present(on: self, with: [.notification,
+                                   .calendar,
+                                   .contacts],
+                  dataSource: DataSource())
+      }
+      
    }
    
    // MARK: Animatebutton function
@@ -163,6 +191,28 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
    
    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
       eventDescription.resignFirstResponder()
+   }
+}
+   extension MainVC: SPRequestPermissionEventsDelegate {
+      func didHide() {
+         UserDefaults.standard.set(true, forKey: "launchedBefore")
+
+      }
    
+   func didAllowPermission(permission: SPRequestPermissionType) {
+      print("allow permission- mainvc")
+    
+   }
+   
+   func didDeniedPermission(permission: SPRequestPermissionType) {
+      print("did denied permission -mainvc")
+      if !SPRequestPermission.isAllowPermission(.calendar) {
+         self.dismiss(animated: true, completion: nil)
+         CalendarUtil.doShow(controllerTitle: "no", controllerMessage: "nono", actionTitle: "nonono")
+      }
+         
+   }
+   
+   func didSelectedPermission(permission: SPRequestPermissionType) {
    }
 }
