@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -88,7 +88,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M3c-p9-alZ" userLabel="Country View" customClass="PNPSideBorderedView">
                                         <rect key="frame" x="16" y="0.0" width="343" height="50"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q2r-U4-ukL" customClass="PNPHighlightButton">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q2r-U4-ukL" customClass="PNPHighlightButton" customModule="InstaEvent_Share" customModuleProvider="target">
                                                 <rect key="frame" x="-16" y="0.0" width="375" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <state key="normal" title="United Kingdom">
@@ -127,7 +127,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sCj-Er-Ot3" userLabel="Country Code View" customClass="PNPSideBorderedView">
                                                 <rect key="frame" x="20" y="0.0" width="64" height="50"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LEj-ce-uD5" userLabel="Country Text Field" customClass="PNPMenuDisabledTextField">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LEj-ce-uD5" userLabel="Country Text Field" customClass="PNPMenuDisabledTextField" customModule="InstaEvent_Share" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="62" height="50"/>
                                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="26"/>
@@ -161,7 +161,7 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="showsRightBorder" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="your phone number" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FbR-zx-AFK" userLabel="Phone Number Text Field" customClass="PNPMenuDisabledTextField">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="your phone number" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FbR-zx-AFK" userLabel="Phone Number Text Field" customClass="PNPMenuDisabledTextField" customModule="InstaEvent_Share" customModuleProvider="target">
                                                 <rect key="frame" x="86" y="0.0" width="257" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -246,11 +246,29 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ha-Ms-Njg">
+                                <rect key="frame" x="112" y="392" width="151" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Register"/>
+                                <connections>
+                                    <action selector="registerBtnPressed:" destination="9lj-PJ-9S6" eventType="touchUpInside" id="ZzJ-3q-mBK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZCM-S7-UKw">
+                                <rect key="frame" x="124" y="206" width="127" height="39"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="loginBtnPressed:" destination="9lj-PJ-9S6" eventType="touchUpInside" id="5Fr-I6-rAZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="stn-cW-Wi5" firstAttribute="top" secondItem="KMy-dB-wGm" secondAttribute="bottom" constant="36" id="5HG-3O-Pla"/>
+                            <constraint firstItem="ZCM-S7-UKw" firstAttribute="top" secondItem="stn-cW-Wi5" secondAttribute="bottom" constant="17" id="5sd-ET-v7Q"/>
+                            <constraint firstItem="ZCM-S7-UKw" firstAttribute="leading" secondItem="gva-mG-zNp" secondAttribute="leadingMargin" constant="108" id="8js-UZ-khf"/>
                             <constraint firstItem="3Li-AR-yBT" firstAttribute="bottom" secondItem="stn-cW-Wi5" secondAttribute="bottom" id="AS5-h6-brm"/>
                             <constraint firstAttribute="centerY" secondItem="nZC-Ri-TrF" secondAttribute="centerY" id="FYQ-tP-set"/>
                             <constraint firstItem="Frs-l0-Ntg" firstAttribute="centerY" secondItem="KMy-dB-wGm" secondAttribute="centerY" id="IkO-KD-tF4"/>
@@ -258,12 +276,16 @@
                             <constraint firstItem="nZC-Ri-TrF" firstAttribute="top" secondItem="3Li-AR-yBT" secondAttribute="bottom" constant="95" id="MEv-84-ocH"/>
                             <constraint firstItem="stn-cW-Wi5" firstAttribute="leading" secondItem="3Li-AR-yBT" secondAttribute="trailing" constant="20" id="MHM-pE-S4m"/>
                             <constraint firstItem="Frs-l0-Ntg" firstAttribute="leading" secondItem="3Li-AR-yBT" secondAttribute="leading" id="OCx-34-s3q"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZCM-S7-UKw" secondAttribute="trailing" constant="108" id="QFn-ax-sD1"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6ha-Ms-Njg" secondAttribute="trailing" constant="96" id="Trm-85-hoD"/>
+                            <constraint firstItem="6ha-Ms-Njg" firstAttribute="top" secondItem="nZC-Ri-TrF" secondAttribute="bottom" constant="8" id="Ysa-9O-dlL"/>
                             <constraint firstItem="KMy-dB-wGm" firstAttribute="top" secondItem="Tha-xM-Rwq" secondAttribute="bottom" constant="29" id="cLi-lH-FRP"/>
                             <constraint firstItem="3Li-AR-yBT" firstAttribute="top" secondItem="KMy-dB-wGm" secondAttribute="bottom" constant="45" id="dDH-ea-K3x"/>
                             <constraint firstItem="nZC-Ri-TrF" firstAttribute="leading" secondItem="gva-mG-zNp" secondAttribute="leadingMargin" constant="-16" id="f9g-3A-Yt3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="stn-cW-Wi5" secondAttribute="trailing" constant="5" id="hBM-an-lVh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="KMy-dB-wGm" secondAttribute="trailing" constant="5" id="naC-ds-pfU"/>
                             <constraint firstItem="3Li-AR-yBT" firstAttribute="leading" secondItem="gva-mG-zNp" secondAttribute="leadingMargin" id="o5P-ut-wtG"/>
+                            <constraint firstItem="6ha-Ms-Njg" firstAttribute="leading" secondItem="gva-mG-zNp" secondAttribute="leadingMargin" constant="96" id="r0D-IW-5zY"/>
                             <constraint firstItem="stn-cW-Wi5" firstAttribute="leading" secondItem="3Li-AR-yBT" secondAttribute="trailing" constant="20" id="y3J-qq-v5L"/>
                             <constraint firstItem="KMy-dB-wGm" firstAttribute="leading" secondItem="Frs-l0-Ntg" secondAttribute="trailing" constant="45" id="zgl-q0-MNE"/>
                         </constraints>
@@ -292,8 +314,10 @@
                         <outlet property="countryTextField" destination="LEj-ce-uD5" id="Qy1-kB-N73"/>
                         <outlet property="doneBarButtonItem" destination="j1Z-Cn-Y8F" id="a1G-Ca-ueL"/>
                         <outlet property="emailTextField" destination="KMy-dB-wGm" id="eqn-Sq-Zk5"/>
+                        <outlet property="loginButton" destination="ZCM-S7-UKw" id="yyU-w4-5bj"/>
                         <outlet property="passwordTextField" destination="stn-cW-Wi5" id="Uk8-Vd-Nay"/>
                         <outlet property="phoneNumberTextField" destination="FbR-zx-AFK" id="3x9-Oi-wCe"/>
+                        <outlet property="registerButton" destination="6ha-Ms-Njg" id="XsS-lx-MA6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L1r-8H-34h" userLabel="First Responder" sceneMemberID="firstResponder"/>

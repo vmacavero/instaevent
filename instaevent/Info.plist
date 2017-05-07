@@ -19,7 +19,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.0.2</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -28,6 +28,8 @@
 	<string>To insert an event, app needs to access Your Calendar. Ok ?</string>
 	<key>NSContactsUsageDescription</key>
 	<string>To send invitation to one of your Contacts, app needs to access Contacts. Ok ?</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Hi, i'd like to use the Mic :)</string>
 	<key>NSRemindersUsageDescription</key>
 	<string>To insert an event, app needs to Access your Reminders. Ok ?</string>
 	<key>UIBackgroundModes</key>

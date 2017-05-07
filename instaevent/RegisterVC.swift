@@ -48,11 +48,39 @@ class RegisterVC: UINavigationController,PhoneNumberViewControllerDelegate {
       dismiss(animated: true, completion: nil)
    }
    
-   func phoneNumberViewController(_ phoneNumberViewController: PhoneNumberViewController, didEnterPhoneNumber phoneNumber: String, email: String, password: String) {
+   func phoneNumberViewController(_ phoneNumberViewController: PhoneNumberViewController, didEnterPhoneNumber phoneNumber: String, email: String, password: String, register: Bool) {
       
       // MARK: Registration Starts here !
       //
+    
+      print(register)
+      if register {
       registerUser(phoneNumber: phoneNumber, email: email, password: password)
+      } else {
+      logUser(email: email, password: password)
+      }
+   }
+   
+   func logUser(email: String, password: String) {
+      FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
+         if user != nil {
+            
+           print("presento alert")
+            UserDefaults.standard.setValue(true, forKey: "registered")
+               timer.invalidate()
+            
+            let refreshAlert = UIAlertController(title: "Refresh", message: "All data will be lost.", preferredStyle: UIAlertControllerStyle.alert)
+            
+            refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+               self.dismiss(animated: true, completion: nil)
+            }))
+            
+            self.present(refreshAlert, animated: true, completion: nil)
+            print("presentato alert")
+         } else {
+            self.doAlert(title: "Login...", message: "Error, user not found, please check again email and password", dismiss: false)
+         }
+      })
    }
    
    func registerUser(phoneNumber: String, email: String, password: String) {
@@ -61,6 +89,7 @@ class RegisterVC: UINavigationController,PhoneNumberViewControllerDelegate {
             self.saveUserOnDatabase(user: (user?.uid)!, email: (user?.email)!, phoneNumber: phoneNumber )
             
             // MARK: we save in userdefaults user and password and useruid to relogin at restart/wakeUp and we mark as registered = true
+            // FIXME: Stop using userdefaults.
             UserDefaults.standard.set(email, forKey: "email")
             UserDefaults.standard.set(password, forKey: "password")
             UserDefaults.standard.set(user!.uid, forKey: "userUID")
@@ -68,6 +97,7 @@ class RegisterVC: UINavigationController,PhoneNumberViewControllerDelegate {
             self.navigationController?.dismiss(animated: true, completion: nil)
             print("dismesso")
             CalendarUtil.doShow(controllerTitle: "Registration", controllerMessage: "Registered Succesfully", actionTitle: "Ok !")
+            timer.invalidate()
             } else {
             switch (error!.localizedDescription) {
             case "The email address is already in use by another account." :
@@ -75,7 +105,7 @@ class RegisterVC: UINavigationController,PhoneNumberViewControllerDelegate {
                self.showAlert(message: "error, email address is already in use by another account !")
                
             default:
-               self.showAlert(message: "can't complete registration, please check  and retry")
+               self.showAlert(message: "can't complete registration, please check and retry")
             }
          }
       })
@@ -102,8 +132,9 @@ class RegisterVC: UINavigationController,PhoneNumberViewControllerDelegate {
       let alert = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertControllerStyle.alert)
       let act1 = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil)
       alert.addAction(act1)
+    //  present(animated: true, completion: nil)
    }
-   
+
    func getOneSignalToken() {
       // MARK: Getting NEW onesignal token
       guard let token =  OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId
@@ -115,4 +146,26 @@ class RegisterVC: UINavigationController,PhoneNumberViewControllerDelegate {
       }
       UserDefaults.standard.setValue(token, forKey: "oneSignalToken")
    }
+   func doAlert(title: String, message: String, dismiss: Bool) {
+      let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+      let act1 = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil)
+      alert.addAction(act1)
+      var topController = UIApplication.shared.keyWindow?.rootViewController
+      while ((topController?.presentedViewController) != nil) {
+         topController = topController?.presentedViewController
+      }
+      if dismiss {
+         topController?.present(alert, animated: true, completion: {
+            let when = DispatchTime.now() + 3
+           
+            DispatchQueue.main.asyncAfter(deadline: when){
+               self.dismiss(animated: true, completion: nil)
+            }
+         })
+      } else {
+         topController?.present(alert, animated: true, completion: nil)
+      }
+
+   }
+
 }

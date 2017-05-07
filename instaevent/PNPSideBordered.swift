@@ -8,15 +8,15 @@
 import UIKit
 
 @IBDesignable
-private class PNPSideBorderedView: UIView {
-    @IBInspectable fileprivate var borderWidth: CGFloat = 0
-    @IBInspectable fileprivate var borderColor: UIColor = UIColor.black
-    
-    @IBInspectable fileprivate var showsTopBorder: Bool = false
-    @IBInspectable fileprivate var showsBottomBorder: Bool = false
-    @IBInspectable fileprivate var showsLeftBorder: Bool = false
-    @IBInspectable fileprivate var showsRightBorder: Bool = false
-    
+private class PNPSideBorderedView :UIView {
+   @IBInspectable private var borderWidth: CGFloat = 0
+   @IBInspectable private var borderColor: UIColor = UIColor.black
+   
+   @IBInspectable private var showsTopBorder: Bool = false
+   @IBInspectable private var showsBottomBorder: Bool = false
+   @IBInspectable private var showsLeftBorder: Bool = false
+   @IBInspectable private var showsRightBorder: Bool = false
+   
     fileprivate override func awakeFromNib() {
         super.awakeFromNib()
         

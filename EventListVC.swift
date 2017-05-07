@@ -58,7 +58,6 @@ class EventListVC: UIViewController, UISearchResultsUpdating, SPRequestPermissio
         dismiss(animated: true, completion: nil)
     }
 
-
     // MARK: - Private methods -
 
     // MARK: Retrieve Events in Calendar

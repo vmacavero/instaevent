@@ -15,6 +15,8 @@ import EventKit
 import EventKitUI
 import Sparrow
 
+var timer = Timer()
+
 class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
 
    @IBOutlet weak var datePicker: UIDatePicker!
@@ -52,7 +54,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
       
       //check for registration
       //so we decide to start the timer and config button animation
-      var timer = Timer()
+     // var timer = Timer()
       
       if UserDefaults.standard.object(forKey: "email") == nil {
          print("email e' nil")
@@ -66,6 +68,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
          FIRAuth.auth()?.signIn(withEmail: UserDefaults.standard.object(forKey: "email") as! String, password: UserDefaults.standard.object(forKey: "password") as! String, completion: { (user, error) in
              print("mi sono riloggato")
          //check if meanwhile the user has been deleted
+            // FIXME: Check for user if logged or not
             print(user as Any)
             print(error as Any)
             })
@@ -80,7 +83,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
       print("main viewdidappear")
       super.viewDidAppear(animated)
      let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
-      if launchedBefore  {
+      if launchedBefore {
          if !SPRequestPermission.isAllowPermissions([.calendar]) {
             SPRequestPermission.dialog
                .interactive
@@ -101,16 +104,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
                                       .contacts],
                      dataSource: DataSource())
       }
-      
-      if !SPRequestPermission.isAllowPermissions([.calendar]) {
-      SPRequestPermission.dialog
-         .interactive
-         .present(on: self, with: [.notification,
-                                   .calendar,
-                                   .contacts],
-                  dataSource: DataSource())
-      }
-      
+               
    }
    
    // MARK: Animatebutton function

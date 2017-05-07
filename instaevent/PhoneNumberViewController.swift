@@ -9,7 +9,7 @@
 import UIKit
 
 public protocol PhoneNumberViewControllerDelegate {
-   func phoneNumberViewController(_ phoneNumberViewController: PhoneNumberViewController, didEnterPhoneNumber phoneNumber: String, email: String, password: String)
+   func phoneNumberViewController(_ phoneNumberViewController: PhoneNumberViewController, didEnterPhoneNumber phoneNumber: String, email: String, password: String, register: Bool)
     func phoneNumberViewControllerDidCancel(_ phoneNumberViewController: PhoneNumberViewController)
 }
 
@@ -29,6 +29,10 @@ public final class PhoneNumberViewController: UIViewController, CountriesViewCon
    
    @IBOutlet public var passwordTextField: UITextField!
     
+   @IBOutlet weak var registerButton: UIButton!
+
+   @IBOutlet weak var loginButton: UIButton!
+   
     public var cancelBarButtonItemHidden = false { didSet { setupCancelButton() } }
     public var doneBarButtonItemHidden = false { didSet { setupDoneButton() } }
    
@@ -43,7 +47,24 @@ public final class PhoneNumberViewController: UIViewController, CountriesViewCon
             navigationItem.rightBarButtonItem = doneBarButtonItemHidden ? nil: doneBarButtonItem
         }
     }
+   
+   @IBAction func loginBtnPressed(_ sender: Any) {
     
+         delegate?.phoneNumberViewController(self, didEnterPhoneNumber: "0", email: emailTextField.text!, password: passwordTextField.text!, register: false)
+
+   }
+   
+   @IBAction fileprivate func registerBtnPressed(_ sender: Any) {
+      
+         if !countryIsValid || !phoneNumberIsValid {
+            return
+         }
+         if let phoneNumber = phoneNumber {
+            delegate?.phoneNumberViewController(self, didEnterPhoneNumber: phoneNumber, email: emailTextField.text!, password: passwordTextField.text!, register: true)
+         }
+      
+   }
+   
     @IBOutlet weak public var backgroundTapGestureRecognizer: UITapGestureRecognizer!
     
     public var delegate: PhoneNumberViewControllerDelegate?
@@ -135,7 +156,7 @@ public final class PhoneNumberViewController: UIViewController, CountriesViewCon
             return
         }
         if let phoneNumber = phoneNumber {
-         delegate?.phoneNumberViewController(self, didEnterPhoneNumber: phoneNumber, email: emailTextField.text!, password: passwordTextField.text!)
+         delegate?.phoneNumberViewController(self, didEnterPhoneNumber: phoneNumber, email: emailTextField.text!, password: passwordTextField.text!, register: true)
         }
     }
     
@@ -168,8 +189,10 @@ public final class PhoneNumberViewController: UIViewController, CountriesViewCon
        let validEmail = emailIsValid(candidate: emailTextField.text!)
       let validPassword = passwordIsValid(field: passwordTextField.text!)
         doneBarButtonItem.isEnabled = validCountry && validPhoneNumber && validEmail && validPassword
-      
-          }
+      registerButton.isEnabled = validCountry && validPhoneNumber && validEmail && validPassword
+      loginButton.isEnabled = validEmail && validPassword
+   }
+   
    // MARK: validateEmail added by me
    fileprivate func emailIsValid(candidate: String) -> Bool {
       let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
