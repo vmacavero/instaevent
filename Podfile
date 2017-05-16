@@ -13,4 +13,5 @@ pod 'Firebase/Database'
 pod 'OneSignal'
 pod 'EVReflection'
 pod 'Sparrow/Modules/RequestPermission', :git => 'https://github.com/IvanVorobei/Sparrow.git'
+pod 'Gecco'
 end

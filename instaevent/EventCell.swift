@@ -19,7 +19,10 @@ class EventCell: UITableViewCell {
    @IBOutlet weak var eventTimeEnd: UILabel!
    
    @IBOutlet weak var eventAlarmsNumber: UILabel!
-   
+  
+  @IBOutlet weak var firstAlarm: UILabel!
+  
+  @IBOutlet weak var secondAlarm: UILabel!
    @IBOutlet weak var eventLocation: UILabel!
    
    @IBOutlet weak var eventAllDay: UILabel!
@@ -35,8 +38,11 @@ class EventCell: UITableViewCell {
          eventTimeStart.text = events.eventTimeStart
          eventTimeEnd.text = events.eventTimeEnd
          eventAllDay.text = events.eventAllDay
-         eventAlarmsNumber.text = events.eventAlarmsNumber
+
+         //eventAlarmsNumber.text = events.eventAlarmsNumber
       eventLocation.text = events.eventLocation
+    firstAlarm.text = events.firstAlarm
+    secondAlarm.text = events.secondAlarm
       
    }
     override func setSelected(_ selected: Bool, animated: Bool) {

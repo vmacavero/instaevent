@@ -17,6 +17,8 @@ class Events {
    private var _eventTimeEnd: String!
    private var _eventAllDay: String!
    private var _eventAlarmsNumber: String!
+  private var _firstAlarm: String!
+  private var _secondAlarm: String!
    private var _eventLocation: String!
    private var _eventId: String!
    
@@ -46,7 +48,15 @@ class Events {
    var eventId: String {
       return _eventId
    }
-   init(eventTitle: String, eventStart: String, eventTimeStart: String, eventTimeEnd: String, eventAllDay: String,  eventAlarmsNumber: String, eventLocation: String, eventId: String ) {
+  
+  var firstAlarm: String {
+    return _firstAlarm
+  }
+  var secondAlarm: String {
+    return _secondAlarm
+  }
+   init(eventTitle: String, eventStart: String, eventTimeStart: String, eventTimeEnd: String, eventAllDay: String,  eventAlarmsNumber: String,
+        firstAlarm: String, secondAlarm: String,eventLocation: String, eventId: String ) {
       
       _eventTitle = eventTitle
       _eventStart = eventStart
@@ -56,6 +66,8 @@ class Events {
       _eventAlarmsNumber = eventAlarmsNumber
       _eventLocation = eventLocation
       _eventId = eventId
+    _firstAlarm = firstAlarm
+    _secondAlarm = secondAlarm
    }
    
 }

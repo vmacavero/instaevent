@@ -33,6 +33,7 @@ PODS:
     - FirebaseInstanceID (~> 1.0)
     - GoogleToolboxForMac/Logger (~> 2.1)
     - Protobuf (~> 3.1)
+  - Gecco (1.0.0)
   - GoogleToolboxForMac/DebugUtils (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - GoogleToolboxForMac/Defines (2.1.1)
@@ -58,6 +59,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Firebase/Messaging
+  - Gecco
   - OneSignal
   - Sparrow/Modules/RequestPermission (from `https://github.com/IvanVorobei/Sparrow.git`)
 
@@ -79,12 +81,13 @@ SPEC CHECKSUMS:
   FirebaseDatabase: 05c96d7b43a7368dc91c07791adb49683e1738d1
   FirebaseInstanceID: b9eedd6846fb5e1f0f7279e1deaa7a7e4cf8392e
   FirebaseMessaging: 753d05a925e9eb8eadd09a0ffc9b808578b72fac
+  Gecco: e662f949821e742997787bad7b730ccc0052e43c
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 5c046c76a1f859bc9c187e918f18e4fc7bb57b5e
   OneSignal: 66d08b6b1e3c3858cbf28207ed20f1fa865ab2a2
   Protobuf: d582fecf68201eac3d79ed61369ef45734394b9c
   Sparrow: 30b0e315a27798d7a56757250499449ac6b663c3
 
-PODFILE CHECKSUM: aecc33a040fc96f5858724381f31820f95b47741
+PODFILE CHECKSUM: 6f2f40bb7ade8b134117b7597fba65d85fe5a0c0
 
 COCOAPODS: 1.2.0

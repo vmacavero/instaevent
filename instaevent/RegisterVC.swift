@@ -20,16 +20,15 @@ class RegisterVC: UINavigationController,PhoneNumberViewControllerDelegate {
       // MARK: CALLING get OneSignal unique token
       getOneSignalToken()
 
-      //if user has already registered, try to login again and if ok present only a button do disconnect.
+      //if user has already registered, try to login again and if ok present only a button to disconnect.
       //otherwise tell user there's a problem with account
-      if (UserDefaults.standard.value(forKey: "registered") != nil) {
-        // performSegue(withIdentifier: <#T##String#>, sender: <#T##Any?#>)
-      } else {
+      if FIRAuth.auth()?.currentUser != nil {
+         print("has logged succesfully")
+         performSegue(withIdentifier: "logoutID", sender: nil)
          
+      } else {
+         presentPhoneNumber()
       }
-      
-      // Do any additional setup after loading the view.
-      presentPhoneNumber()
    }
 
     override func didReceiveMemoryWarning() {
@@ -68,8 +67,12 @@ class RegisterVC: UINavigationController,PhoneNumberViewControllerDelegate {
            print("presento alert")
             UserDefaults.standard.setValue(true, forKey: "registered")
                timer.invalidate()
-            
-            let refreshAlert = UIAlertController(title: "Refresh", message: "All data will be lost.", preferredStyle: UIAlertControllerStyle.alert)
+          UserDefaults.standard.set(email, forKey: "email")
+          UserDefaults.standard.set(password, forKey: "password")
+          UserDefaults.standard.set(user!.uid, forKey: "userUID")
+          UserDefaults.standard.setValue(true, forKey: "registered")
+          
+            let refreshAlert = UIAlertController(title: "Sign In", message: "Correctly Signed in !", preferredStyle: UIAlertControllerStyle.alert)
             
             refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
                self.dismiss(animated: true, completion: nil)
@@ -158,7 +161,7 @@ class RegisterVC: UINavigationController,PhoneNumberViewControllerDelegate {
          topController?.present(alert, animated: true, completion: {
             let when = DispatchTime.now() + 3
            
-            DispatchQueue.main.asyncAfter(deadline: when){
+            DispatchQueue.main.asyncAfter(deadline: when) {
                self.dismiss(animated: true, completion: nil)
             }
          })

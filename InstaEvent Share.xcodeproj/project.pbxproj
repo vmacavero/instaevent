@@ -11,6 +11,9 @@
 		0D05D0621E62D3C20054BE7B /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D05D0611E62D3C20054BE7B /* UserNotificationsUI.framework */; };
 		0D05D0641E62D3C80054BE7B /* PushKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D05D0631E62D3C80054BE7B /* PushKit.framework */; };
 		0D0FEA761EA92B5D000BF070 /* AllText.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0D0FEA751EA92B5D000BF070 /* AllText.strings */; };
+		0D30CF611EC710610079ACC6 /* AnnotationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D30CF601EC710610079ACC6 /* AnnotationVC.swift */; };
+		0D30CF631EC7482E0079ACC6 /* Popover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D30CF621EC7482E0079ACC6 /* Popover.swift */; };
+		0D3EB5361EBF83FB002F83EC /* LogoutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D3EB5351EBF83FB002F83EC /* LogoutVC.swift */; };
 		0D40F9F21E6AE14D00A8E3FC /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D40F9F11E6AE14D00A8E3FC /* EventCell.swift */; };
 		0D40F9F41E6AE6BC00A8E3FC /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D40F9F31E6AE6BC00A8E3FC /* Events.swift */; };
 		0D5813CF1E87B471001B62F9 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5813CE1E87B471001B62F9 /* Contacts.swift */; };
@@ -48,7 +51,10 @@
 		0D05D0611E62D3C20054BE7B /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
 		0D05D0631E62D3C80054BE7B /* PushKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PushKit.framework; path = System/Library/Frameworks/PushKit.framework; sourceTree = SDKROOT; };
 		0D0FEA751EA92B5D000BF070 /* AllText.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = AllText.strings; sourceTree = "<group>"; };
+		0D30CF601EC710610079ACC6 /* AnnotationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationVC.swift; sourceTree = "<group>"; };
+		0D30CF621EC7482E0079ACC6 /* Popover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Popover.swift; sourceTree = "<group>"; };
 		0D32BEC01E61E0B7002A0DE9 /* instaevent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = instaevent.entitlements; sourceTree = "<group>"; };
+		0D3EB5351EBF83FB002F83EC /* LogoutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutVC.swift; sourceTree = "<group>"; };
 		0D40F9F11E6AE14D00A8E3FC /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		0D40F9F31E6AE6BC00A8E3FC /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		0D5813CE1E87B471001B62F9 /* Contacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
@@ -138,6 +144,8 @@
 				0D6D096A1E85AC45007A68BE /* EventEditVC.swift */,
 				0D6D096C1E85AE41007A68BE /* ContactListVC.swift */,
 				0D9B7BD71EB8C8F90089378E /* Serializer.swift */,
+				0D3EB5351EBF83FB002F83EC /* LogoutVC.swift */,
+				0D30CF601EC710610079ACC6 /* AnnotationVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -162,6 +170,7 @@
 		0DB52DE21E90EA8C00E74D4F /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				0D30CF621EC7482E0079ACC6 /* Popover.swift */,
 				0DB52DE31E90EAA400E74D4F /* CalendarUtil.swift */,
 			);
 			name = Utility;
@@ -385,15 +394,18 @@
 				0DB52DE41E90EAA400E74D4F /* CalendarUtil.swift in Sources */,
 				0D6D096B1E85AC45007A68BE /* EventEditVC.swift in Sources */,
 				0DB52DDA1E8F682900E74D4F /* PNPHighlightButton.swift in Sources */,
+				0D3EB5361EBF83FB002F83EC /* LogoutVC.swift in Sources */,
 				0DB52DD11E8F680D00E74D4F /* CountriesViewController.swift in Sources */,
 				0D5813CF1E87B471001B62F9 /* Contacts.swift in Sources */,
 				0D9B7BD81EB8C8F90089378E /* Serializer.swift in Sources */,
 				0D40F9F21E6AE14D00A8E3FC /* EventCell.swift in Sources */,
 				0DB52DE11E8F815000E74D4F /* RegisterVC.swift in Sources */,
+				0D30CF611EC710610079ACC6 /* AnnotationVC.swift in Sources */,
 				0D80E0261E8CC1A3002DE0AF /* RoundedButton.swift in Sources */,
 				0DA623CE1E65835900CAD40E /* EventListVC.swift in Sources */,
 				0DB52DD01E8F680D00E74D4F /* PhoneNumberViewController.swift in Sources */,
 				0D40F9F41E6AE6BC00A8E3FC /* Events.swift in Sources */,
+				0D30CF631EC7482E0079ACC6 /* Popover.swift in Sources */,
 				0DD90CA81E5DEFFB002B08ED /* AppDelegate.swift in Sources */,
 				0DB52DD51E8F681900E74D4F /* Countries.swift in Sources */,
 				0DB52DDC1E8F682900E74D4F /* PNPSideBordered.swift in Sources */,
@@ -533,6 +545,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.themac.instaeventshare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -551,6 +564,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.themac.instaeventshare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

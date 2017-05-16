@@ -66,14 +66,11 @@ class EventListVC: UIViewController, UISearchResultsUpdating, SPRequestPermissio
 
         let calendar = globalStore.defaultCalendarForNewEvents
 
-        print("calendar default = \(calendar.title)")
-
         var eventlist: [EKEvent]?
 
         let dateFormatter = DateFormatter()
 
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-        //dateFormatter.dateFormat = "yyyy-MM-dd"
         // Create start and end date NSDate instances to build a predicate for which events to select
         let startDate = dateFormatter.date(from: "2017-03-01 00:00")
         //TODO: Add 12 months to startdate, so it's always coherent
@@ -85,7 +82,6 @@ class EventListVC: UIViewController, UISearchResultsUpdating, SPRequestPermissio
             // Use an event store instance to create and properly configure an NSPredicate
             var calendars = [EKCalendar]()
             calendars.append(calendar)
-            print("ho appeso \(calendar)")
             
             let eventsPredicate = globalStore.predicateForEvents(withStart: startDate, end: endDate, calendars: calendars)
             
@@ -94,25 +90,37 @@ class EventListVC: UIViewController, UISearchResultsUpdating, SPRequestPermissio
                 return e1.startDate.compare(e2.startDate) == ComparisonResult.orderedAscending
             }
         }
-        print("eventi = ")
         guard let list = eventlist else {
-         print("guard let list = eventlist")
             return
         }
         for event in list {
             //unwrap optional ! otherwise set to Zero (0)
             let alarmCount = event.alarms?.count ?? 0
             let location = event.location ?? "No Location"
-            let dateTimeFormatter = DateFormatter()
             let dateAloneFormatter = DateFormatter()
+            let dateTimeFormatter = DateFormatter()
             dateTimeFormatter.dateFormat = "HH:mm"
             dateAloneFormatter.dateFormat = "dd/MM/yyyy"
+          var firstAlrm = "None"
+          var secondAlrm = "None"
+      //    if let alarmCount = event.alarms?.count {
+            switch alarmCount {
+            case 1 : firstAlrm = dateFormatter.string(from: Date(timeInterval: (event.alarms?[0].relativeOffset)!, since: event.startDate))
+              break
+            case 2 : firstAlrm = dateFormatter.string(from: Date(timeInterval: (event.alarms?[0].relativeOffset)!, since: event.startDate))
+            secondAlrm = dateFormatter.string(from: Date(timeInterval: (event.alarms?[1].relativeOffset)!, since: event.startDate))
+              break
+            default : break
+            }
+          
             let eventToAppend = Events(eventTitle: event.title,
                                        eventStart: dateAloneFormatter.string(from: event.startDate),
                                        eventTimeStart: dateTimeFormatter.string(from: event.startDate),
                                        eventTimeEnd: dateTimeFormatter.string(from: event.endDate),
                                        eventAllDay: event.hasRecurrenceRules.description,
                                        eventAlarmsNumber: String(alarmCount),
+                                       firstAlarm: firstAlrm,
+                                       secondAlarm: secondAlrm,
                                        eventLocation: location, eventId: event.eventIdentifier)
             self.events.append(eventToAppend)
         }

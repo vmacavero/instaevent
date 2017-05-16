@@ -243,11 +243,11 @@ class ContactListVC: UIViewController, UITableViewDataSource, UITableViewDelegat
       alarmDate.append("no")
       alarmDate.append("no")
       }
-      //if we had just 1 alarm....
+      //if we have just 1 alarm....
       if alarmDate.count == 1 {
          alarmDate.append("no") //second element of alarmDate array
       }
-   let start = formatter.string(from: event.startDate)
+    let start = formatter.string(from: event.startDate)
       let end = formatter.string(from: event.endDate)
       
     OneSignal.postNotification(["contents": ["en": "Hai Ricevuto un nuovo evento  !"],
@@ -260,7 +260,6 @@ class ContactListVC: UIViewController, UITableViewDataSource, UITableViewDelegat
                                        "alarm2": "\(alarmDate[1])"],
                                   "include_player_ids": tok],
                                  onSuccess: { (success) in
-                                    print("success = \(success!)")
                                     self.resultSearchController.dismiss(animated: true, completion: nil)
                                     let alert = UIAlertController(title: "Good !",
                                                                   message: "msg inviato success = \(success!)",

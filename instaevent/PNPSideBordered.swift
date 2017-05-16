@@ -8,7 +8,7 @@
 import UIKit
 
 @IBDesignable
-private class PNPSideBorderedView :UIView {
+private class PNPSideBorderedView: UIView {
    @IBInspectable private var borderWidth: CGFloat = 0
    @IBInspectable private var borderColor: UIColor = UIColor.black
    
