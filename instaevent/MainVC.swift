@@ -83,22 +83,25 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
   }//viewDidLoad end
   
    // MARK: ViewDidAppear
-   override func viewDidAppear(_ animated: Bool) {
-      
-      print("main viewdidappear")
-      super.viewDidAppear(animated)
+  override func viewDidAppear(_ animated: Bool) {
     
-     if UserDefaults.standard.object(forKey: "email") == nil && !timer.isValid {
+    print("main viewdidappear")
+    super.viewDidAppear(animated)
+    
+    if UserDefaults.standard.object(forKey: "email") == nil && !timer.isValid {
       fireTimer()
     }
     
     //Popover and then in popover we'll call userpermissions
     let popAppeared = UserDefaults.standard.bool(forKey: "popoverAppeared")
+    print("sono in view did load e ho preso popAppared : ")
+    print(popAppeared)
     if !popAppeared {
+      print("faccio poover1")
       popover1()
     }
   }
-   
+  
    // MARK: Animatebutton function
    func animatebutton(btn: UIButton) {
       btn.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
@@ -194,7 +197,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
       print("did denied permission -mainvc")
       if !SPRequestPermission.isAllowPermission(.calendar) {
          self.dismiss(animated: true, completion: nil)
-         CalendarUtil.doShow(controllerTitle: "no", controllerMessage: "nono", actionTitle: "nonono")
+         CalendarUtil.doShow(controllerTitle: "Permission", controllerMessage: "Please Allow Permission in settings", actionTitle: "i'll Think about it")
       }
          
    }
@@ -204,7 +207,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
 
     func popover1() {
       let label = UILabel(frame: CGRect(origin: CGPoint.init(x:0, y: 0), size: CGSize.init(width: self.view.frame.width/1.3, height: self.view.frame.height/4)))
-      label.text = "Welcome to InstaEvent Share!\nI'll briefly introduce to some functionalities\nThis apps allows you to insert your personal Events\nBut you can also share them with your contacts!\nThis intro will happen only on firs run\n(tap anywhere out of this window for next tip)"
+      label.text = "Welcome to InstaEvent Share!\nI'll briefly introduce to some functionalities\nThis apps allows you to insert your personal Events\nBut you can also share them with your contacts!\nThis intro will happen only on first run\n(tap anywhere out of this window for next tip)"
       label.font = UIFont(name: "AvenirNext-DemiBold", size: 18.0)
       label.minimumScaleFactor = 10/UIFont.labelFontSize
       label.adjustsFontSizeToFitWidth = true

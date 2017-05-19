@@ -13,7 +13,7 @@ import EventKit
 import OneSignal
 
 class ContactListVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating {
-   var eventId: String = ""
+  var eventId: String = ""
    
    @IBOutlet weak var contactTV: UITableView!
    var contactStore = CNContactStore()

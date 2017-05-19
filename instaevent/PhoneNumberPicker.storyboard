@@ -261,14 +261,29 @@
                                     <action selector="loginBtnPressed:" destination="9lj-PJ-9S6" eventType="touchUpInside" id="5Fr-I6-rAZ"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instructions on next run" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lt6-91-gf2">
+                                <rect key="frame" x="39" y="446" width="157" height="31"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="wXb-dx-EE0">
+                                <rect key="frame" x="204" y="446" width="51" height="31"/>
+                                <connections>
+                                    <action selector="instructionsSwitchPressed:" destination="9lj-PJ-9S6" eventType="valueChanged" id="5wh-hQ-hmo"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="ZCM-S7-UKw" firstAttribute="centerX" secondItem="nZC-Ri-TrF" secondAttribute="centerX" id="1zX-Ld-ZaK"/>
+                            <constraint firstItem="Lt6-91-gf2" firstAttribute="leading" secondItem="gva-mG-zNp" secondAttribute="leadingMargin" constant="23" id="5ID-01-hO9"/>
                             <constraint firstItem="zS4-zO-O6M" firstAttribute="leading" secondItem="nZC-Ri-TrF" secondAttribute="leading" id="8kP-pZ-TeC"/>
+                            <constraint firstItem="Lt6-91-gf2" firstAttribute="top" secondItem="6ha-Ms-Njg" secondAttribute="bottom" constant="14" id="AMT-b8-Zhi"/>
                             <constraint firstItem="Frs-l0-Ntg" firstAttribute="leading" secondItem="3Li-AR-yBT" secondAttribute="leading" id="CEJ-yr-hqS"/>
                             <constraint firstAttribute="trailingMargin" secondItem="KMy-dB-wGm" secondAttribute="trailing" constant="5" id="DrV-Ev-m53"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wXb-dx-EE0" secondAttribute="trailing" constant="51" id="EwX-6I-nYG"/>
                             <constraint firstItem="3Li-AR-yBT" firstAttribute="bottom" secondItem="stn-cW-Wi5" secondAttribute="bottom" id="GOR-ey-m60"/>
                             <constraint firstItem="Frs-l0-Ntg" firstAttribute="leading" secondItem="gva-mG-zNp" secondAttribute="leadingMargin" id="JJi-gA-8J4"/>
                             <constraint firstItem="zS4-zO-O6M" firstAttribute="centerY" secondItem="nZC-Ri-TrF" secondAttribute="centerY" id="JXH-bD-OwH"/>
@@ -278,6 +293,7 @@
                             <constraint firstItem="nZC-Ri-TrF" firstAttribute="top" secondItem="3Li-AR-yBT" secondAttribute="bottom" constant="95" id="NYB-JK-LBU"/>
                             <constraint firstItem="KMy-dB-wGm" firstAttribute="trailing" secondItem="stn-cW-Wi5" secondAttribute="trailing" id="PBA-Wd-yZa"/>
                             <constraint firstAttribute="trailing" secondItem="nZC-Ri-TrF" secondAttribute="trailing" id="Po7-GH-Rl5"/>
+                            <constraint firstItem="uGp-ZO-N0F" firstAttribute="top" secondItem="wXb-dx-EE0" secondAttribute="bottom" constant="3" id="QgL-lJ-MQV"/>
                             <constraint firstItem="zS4-zO-O6M" firstAttribute="top" secondItem="gva-mG-zNp" secondAttribute="top" id="S8G-5I-qFD"/>
                             <constraint firstItem="nZC-Ri-TrF" firstAttribute="leading" secondItem="gva-mG-zNp" secondAttribute="leading" id="SM6-0M-UzB"/>
                             <constraint firstItem="KMy-dB-wGm" firstAttribute="leading" secondItem="stn-cW-Wi5" secondAttribute="leading" id="SdI-ay-oiv"/>
@@ -286,8 +302,11 @@
                             <constraint firstItem="6ha-Ms-Njg" firstAttribute="leading" secondItem="gva-mG-zNp" secondAttribute="leadingMargin" constant="96" id="bmA-Nm-KQh"/>
                             <constraint firstItem="Frs-l0-Ntg" firstAttribute="top" secondItem="Tha-xM-Rwq" secondAttribute="bottom" constant="34" id="jd3-P2-2ne"/>
                             <constraint firstItem="6ha-Ms-Njg" firstAttribute="top" secondItem="nZC-Ri-TrF" secondAttribute="bottom" constant="8" symbolic="YES" id="oOM-cr-6Hk"/>
+                            <constraint firstItem="wXb-dx-EE0" firstAttribute="top" secondItem="6ha-Ms-Njg" secondAttribute="bottom" constant="14" id="pAJ-I6-byi"/>
                             <constraint firstItem="3Li-AR-yBT" firstAttribute="top" secondItem="Frs-l0-Ntg" secondAttribute="bottom" constant="49" id="tbJ-hh-83o"/>
                             <constraint firstItem="nZC-Ri-TrF" firstAttribute="centerX" secondItem="6ha-Ms-Njg" secondAttribute="centerX" id="vAU-c5-3YW"/>
+                            <constraint firstItem="wXb-dx-EE0" firstAttribute="leading" secondItem="Lt6-91-gf2" secondAttribute="trailing" constant="8" id="vbY-Fc-SYK"/>
+                            <constraint firstItem="uGp-ZO-N0F" firstAttribute="top" secondItem="Lt6-91-gf2" secondAttribute="bottom" constant="3" id="wsd-fQ-Rlr"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="Ufo-fL-7Dk" appends="YES" id="3Ys-CR-aYR"/>
@@ -314,6 +333,7 @@
                         <outlet property="countryTextField" destination="LEj-ce-uD5" id="Qy1-kB-N73"/>
                         <outlet property="doneBarButtonItem" destination="j1Z-Cn-Y8F" id="a1G-Ca-ueL"/>
                         <outlet property="emailTextField" destination="KMy-dB-wGm" id="eqn-Sq-Zk5"/>
+                        <outlet property="instructionsSwitch" destination="wXb-dx-EE0" id="PQO-Ho-mam"/>
                         <outlet property="loginButton" destination="ZCM-S7-UKw" id="yyU-w4-5bj"/>
                         <outlet property="passwordTextField" destination="stn-cW-Wi5" id="Uk8-Vd-Nay"/>
                         <outlet property="phoneNumberTextField" destination="FbR-zx-AFK" id="3x9-Oi-wCe"/>
@@ -327,7 +347,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1149.5999999999999" y="258.62068965517244"/>
+            <point key="canvasLocation" x="1149.375" y="257.5"/>
         </scene>
     </scenes>
     <resources>

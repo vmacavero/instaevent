@@ -17,7 +17,6 @@ public final class CountriesViewController: UITableViewController, UISearchContr
     public class func standardController() -> CountriesViewController {
         return UIStoryboard(name: "PhoneNumberPicker", bundle: Bundle(for: self)).instantiateViewController(withIdentifier: "Countries") as! CountriesViewController
     }
-    
     @IBOutlet weak public var cancelBarButtonItem: UIBarButtonItem!
     public var cancelBarButtonItemHidden = false { didSet { setupCancelButton() } }
     

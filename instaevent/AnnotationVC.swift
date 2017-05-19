@@ -17,8 +17,7 @@ class AnnotationVC: SpotlightViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    delegate = self as? SpotlightViewControllerDelegate
+    delegate = self 
   }
   
   func next(_ labelAnimated: Bool) {

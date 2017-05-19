@@ -17,7 +17,6 @@ public final class PhoneNumberViewController: UIViewController, CountriesViewCon
     public class func standardController() -> PhoneNumberViewController {
         return UIStoryboard(name: "PhoneNumberPicker", bundle: nil).instantiateViewController(withIdentifier: "PhoneNumber") as! PhoneNumberViewController
     }
-    
     @IBOutlet weak public var countryButton: UIButton!
     @IBOutlet weak public var countryTextField: UITextField!
     @IBOutlet weak public var phoneNumberTextField: UITextField!
@@ -33,9 +32,21 @@ public final class PhoneNumberViewController: UIViewController, CountriesViewCon
 
    @IBOutlet weak var loginButton: UIButton!
    
+  @IBOutlet weak var instructionsSwitch: UISwitch!
+  
     public var cancelBarButtonItemHidden = false { didSet { setupCancelButton() } }
-    public var doneBarButtonItemHidden = false { didSet { setupDoneButton() } }
-   
+    public var doneBarButtonItemHidden = true { didSet { setupDoneButton() } }
+  
+  @IBAction func instructionsSwitchPressed(_ sender: Any) {
+    if instructionsSwitch.isOn {
+      UserDefaults.standard.removeObject(forKey: "popoverAppeared")
+      print("rimuovo instructionsswitch popoverappeared")
+    } else {
+      UserDefaults.standard.set(true, forKey: "popoverAppeared")
+      print("messo true a popoverappeared")
+    }
+    
+  }
     fileprivate func setupCancelButton() {
         if let cancelBarButtonItem = cancelBarButtonItem {
             navigationItem.leftBarButtonItem = cancelBarButtonItemHidden ? nil: cancelBarButtonItem

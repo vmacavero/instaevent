@@ -12,6 +12,17 @@ import FirebaseAuth
 class LogoutVC: UIViewController {
 
   @IBOutlet weak var loggedLbl: UILabel!
+  
+  @IBAction func instructionsSwitchPressed(_ sender: Any) {
+    if instructionsSwitch.isOn {
+      UserDefaults.standard.removeObject(forKey: "popoverAppeared")
+      print("rimuovo instructionsswitch popoverappeared")
+    } else {
+      UserDefaults.standard.set(true, forKey: "popoverAppeared")
+      print("messo true a popoverappeared")
+    }
+  }
+  @IBOutlet weak var instructionsSwitch: UISwitch!
    @IBAction func backBtnPressed(_ sender: Any) {
       dismiss(animated: true, completion: nil)
       

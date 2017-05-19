@@ -13,7 +13,8 @@ import EventKit
 import Sparrow
 
 class EventListVC: UIViewController, UISearchResultsUpdating, SPRequestPermissionEventsDelegate {
-// MARK: - Private outlets -
+
+  // MARK: - Private outlets -
     @IBOutlet weak fileprivate var tableView: UITableView!
     @IBOutlet weak fileprivate var msgTextField: UITextField!
 

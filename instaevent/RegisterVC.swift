@@ -13,7 +13,7 @@ import Firebase
 import OneSignal
 
 class RegisterVC: UINavigationController,PhoneNumberViewControllerDelegate {
-
+  
     override func viewDidLoad() {
         super.viewDidLoad()
 
